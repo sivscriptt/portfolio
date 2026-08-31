@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Shiwan — Solutions Analyst &amp; Developer</title>
-<meta name="description" content="Solutions Analyst on oneGov at MINDCo and a hands-on developer in Malé, Maldives. I build and run production web applications end to end — schema and typed APIs, through React interfaces, through deployment.">
+<title>Mohamed Shiwan · Solutions Analyst &amp; Developer</title>
+<meta name="description" content="Solutions Analyst on oneGov at MINDCo and a hands-on developer. I build and run production web applications end to end, from the database schema to the front end to the servers they run on.">
 <meta name="author" content="Mohamed Shiwan">
 <meta name="theme-color" content="#000000">
 <link rel="canonical" href="https://sivscriptt.github.io/portfolio/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111'/><text x='50' y='50' dy='.35em' text-anchor='middle' font-size='52' font-family='monospace' font-weight='700' fill='%23fff'>S</text></svg>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sivscriptt.github.io/portfolio/">
-<meta property="og:title" content="Mohamed Shiwan — Solutions Analyst &amp; Developer">
+<meta property="og:title" content="Mohamed Shiwan · Solutions Analyst &amp; Developer">
 <meta property="og:description" content="I build and run production web applications end to end.">
 <meta property="og:locale" content="en_US">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,7 +127,7 @@
   }
   @keyframes blink { 50% { opacity: 0; } }
   .intro-focus {
-    margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 18px;
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 6px;
   }
   .intro-focus span {
     font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: .06em;
@@ -142,12 +142,14 @@
   }
 
   /* ---------- ABOUT ---------- */
-  .card-about { grid-area: about; overflow-y: auto; scrollbar-width: none; }
-  .card-about::-webkit-scrollbar { display: none; }
+  .card-about { grid-area: about; }
+  .about-scroll { flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+  .about-scroll::-webkit-scrollbar { display: none; }
   .about-text { font-size: 13px; color: var(--gray-300); line-height: 1.65; margin-bottom: 12px; }
   .about-text:last-of-type { margin-bottom: 0; }
   .about-text strong { color: var(--white); font-weight: 500; }
   .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; flex-shrink: 0; }
+  @media (max-width: 680px) { .about-scroll { overflow: visible; } }
   .stat-box {
     background: rgba(255,255,255,0.03); border: 1px solid var(--border);
     border-radius: 8px; padding: 10px 12px; text-align: center;
@@ -236,7 +238,7 @@
 
   /* ---------- CONNECT ---------- */
   .card-connect { grid-area: connect; }
-  .connect-list { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+  .connect-list { display: flex; flex-direction: column; gap: 8px; }
   .connect-item {
     display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px;
     border-radius: var(--radius-sm); text-decoration: none; color: var(--white);
@@ -331,15 +333,16 @@
       </div>
     </div>
     <div class="intro-focus"><span>Full-stack</span><span>Platform tooling</span><span>App security</span></div>
-    <div class="intro-loc">Malé, Maldives · GMT+5</div>
   </section>
 
   <!-- ABOUT -->
   <section class="card card-about anim" style="animation-delay:.06s">
     <div class="card-label"><span class="label-dot"></span>About</div>
-    <p class="about-text">I work on <strong>oneGov</strong>, the Maldives' single-window government platform, re-engineering public services and building the internal tooling the solutions team uses to ship them.</p>
-    <p class="about-text">Outside that I design, build, and operate <strong>multi-tenant SaaS products</strong> on my own — schema and typed APIs, the React front end, the infrastructure they run on, and the tests that keep them honest.</p>
-    <p class="about-text">I care about data integrity, real test coverage, and closing security holes before anyone else finds them.</p>
+    <div class="about-scroll">
+      <p class="about-text">I work on <strong>oneGov</strong>, the Maldives' single-window government platform. I re-engineer public services and build the internal tooling the solutions team uses to ship them.</p>
+      <p class="about-text">On my own I build and run <strong>multi-tenant SaaS products</strong> end to end. I design the schema, write the API and the React front end, set up the infrastructure, and write the tests.</p>
+      <p class="about-text">Most of what I build runs in production.</p>
+    </div>
     <div class="stats">
       <div class="stat-box"><div class="stat-number">10+</div><div class="stat-label">Shipped</div></div>
       <div class="stat-box"><div class="stat-number">7</div><div class="stat-label">In production</div></div>
@@ -350,7 +353,7 @@
   <section class="card card-works anim" style="animation-delay:.1s">
     <div class="works-header">
       <div class="card-label" style="margin-bottom:0"><span class="label-dot"></span>Selected works</div>
-      <span class="works-count">06 projects</span>
+      <span class="works-count">07 projects</span>
     </div>
     <div class="works-list">
 
@@ -385,6 +388,14 @@
         <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span><span class="work-tag">S3</span></span>
         <span class="work-arrow"></span>
       </div>
+
+      <a class="work-row" href="https://seraioceandream.com" target="_blank" rel="noopener">
+        <span class="work-status" title="Live"></span>
+        <span class="work-name">SERAI Ocean Dream</span>
+        <span class="work-desc">Private yacht charter, Maldives</span>
+        <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span></span>
+        <span class="work-arrow">→</span>
+      </a>
 
       <a class="work-row" href="https://isla-retreat.mhd-shiwan.workers.dev" target="_blank" rel="noopener">
         <span class="work-status" title="Live"></span>
@@ -527,10 +538,6 @@
         </span>
         <span class="connect-arrow">→</span>
       </a>
-    </div>
-    <div class="connect-foot">
-      <span>Malé, Maldives</span>
-      <span>GMT+5</span>
     </div>
   </section>
 
