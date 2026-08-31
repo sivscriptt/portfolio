@@ -17,6 +17,29 @@
 <meta property="og:title" content="Mohamed Shiwan · Solutions Analyst &amp; Developer">
 <meta property="og:description" content="I build and run production web applications end to end.">
 <meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mohamed Shiwan">
+<meta property="og:image" content="https://sivscriptt.github.io/portfolio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mohamed Shiwan, Solutions Analyst on oneGov and full-stack developer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mohamed Shiwan · Solutions Analyst &amp; Developer">
+<meta name="twitter:description" content="I build and run production web applications end to end.">
+<meta name="twitter:image" content="https://sivscriptt.github.io/portfolio/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamed Shiwan",
+  "url": "https://sivscriptt.github.io/portfolio/",
+  "jobTitle": "Solutions Analyst",
+  "email": "hello.siv@proton.me",
+  "worksFor": { "@type": "Organization", "name": "MINDCo" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Mal\u00e9", "addressCountry": "MV" },
+  "sameAs": ["https://github.com/sivscriptt"],
+  "knowsAbout": ["TypeScript","React","Next.js","Node.js","PostgreSQL","tRPC","Drizzle","REST API design","Cloudflare Workers","CI/CD","Application security"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -25,7 +48,7 @@
   :root {
     --black: #000000; --surface: #111111; --surface-hover: #1a1a1a;
     --border: #2a2a2a; --border-hover: #3a3a3a; --white: #ffffff;
-    --gray-100: #f5f5f5; --gray-300: #a0a0a0; --gray-500: #666666;
+    --gray-100: #f5f5f5; --gray-300: #a0a0a0; --gray-500: #8a8a8a;
     --gray-700: #333333;
     --radius: 12px; --radius-sm: 8px; --gap: 10px;
   }
@@ -49,6 +72,21 @@
     transition: width .2s, height .2s, border-color .2s, opacity .2s;
   }
   .cursor-ring.hovering { width: 52px; height: 52px; border-color: rgba(255,255,255,0.6); }
+  @media (hover: hover) and (pointer: fine) and (min-width: 1101px) {
+    body { cursor: none; }
+    p, .about-text, .intro-role, .code-body { cursor: text; }
+  }
+
+  /* ---------- FOCUS ---------- */
+  a:focus-visible, .sound-toggle:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: -2px;          /* negative so overflow:hidden cannot crop it */
+    border-radius: var(--radius-sm);
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
 
   /* ---------- BACKDROP ---------- */
   .bg-grid {
@@ -104,6 +142,7 @@
   .card:hover::after { opacity: 1; }
 
   .card-label {
+    margin-top: 0;
     font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
     text-transform: uppercase; letter-spacing: .12em; color: var(--gray-500);
     margin-bottom: 16px; flex-shrink: 0; display: flex; align-items: center; gap: 6px;
@@ -163,7 +202,7 @@
   /* ---------- WORKS ---------- */
   .card-works { grid-area: works; padding: 20px; }
   .works-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-shrink: 0; }
-  .works-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-700); }
+  .works-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500); }
   .works-list { flex: 1; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; scrollbar-width: none; }
   .works-list::-webkit-scrollbar { display: none; }
   .work-row {
@@ -208,7 +247,7 @@
   .now-section { margin-bottom: 12px; }
   .now-section:last-child { margin-bottom: 0; }
   .now-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray-700);
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--gray-500);
     text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px;
   }
   .now-item {
@@ -234,7 +273,7 @@
   }
   .code-body::-webkit-scrollbar { display: none; }
   .code-line { display: flex; gap: 12px; }
-  .code-num { color: var(--gray-700); user-select: none; min-width: 14px; text-align: right; flex-shrink: 0; }
+  .code-num { color: var(--gray-500); user-select: none; min-width: 14px; text-align: right; flex-shrink: 0; }
   .code-content { white-space: pre; }
   .ck { color: #c678dd; } .cs { color: #98c379; } .cf { color: #61afef; }
   .cv { color: #e06c75; } .cn { color: #d19a66; }
@@ -260,7 +299,7 @@
     font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500);
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
   }
-  .connect-arrow { font-size: 13px; color: var(--gray-700); flex-shrink: 0; }
+  .connect-arrow { font-size: 13px; color: var(--gray-500); flex-shrink: 0; }
   .connect-item:hover .connect-arrow { color: var(--gray-300); }
   .connect-foot {
     margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border);
@@ -269,10 +308,17 @@
   }
 
   /* ---------- ENTRANCE ---------- */
-  .anim { opacity: 0; transform: translateY(12px); animation: rise .55s cubic-bezier(.16,1,.3,1) forwards; }
-  @keyframes rise { to { opacity: 1; transform: none; } }
+  .anim { animation: rise .55s cubic-bezier(.16,1,.3,1) backwards; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
 
   /* ---------- RESPONSIVE ---------- */
+  @media (max-height: 760px) and (min-width: 1101px) {
+    html, body { height: auto; overflow: auto; }
+    .wrapper {
+      height: auto; min-height: 100dvh;
+      grid-template-rows: minmax(300px, auto) minmax(300px, auto);
+    }
+  }
   @media (max-width: 1100px) {
     html, body { height: auto; overflow: auto; }
     .wrapper {
@@ -324,14 +370,14 @@
 <main class="wrapper">
 
   <!-- PROFILE -->
-  <section class="card card-intro anim" style="animation-delay:.02s">
-    <div class="card-label"><span class="label-dot"></span>Profile</div>
+  <section class="card card-intro anim" aria-labelledby="lbl-profile" style="animation-delay:.02s">
+    <h2 class="card-label" id="lbl-profile"><span class="label-dot" aria-hidden="true"></span>Profile</h2>
     <div>
       <h1 class="intro-name">Mohamed<br>Shiwan</h1>
       <p class="intro-role"><strong>Solutions Analyst on oneGov</strong> at MINDCo, and a hands-on developer. I build and run production web applications end to end.</p>
       <div class="terminal-line">
         <span class="terminal-prompt">$</span>
-        <span class="terminal-text" id="term"></span>
+        <span class="terminal-text" id="term">echo "from schema to deploy"</span>
         <span class="terminal-cursor"></span>
       </div>
     </div>
@@ -339,89 +385,89 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="card card-about anim" style="animation-delay:.06s">
-    <div class="card-label"><span class="label-dot"></span>About</div>
+  <section class="card card-about anim" aria-labelledby="lbl-about" style="animation-delay:.06s">
+    <h2 class="card-label" id="lbl-about"><span class="label-dot" aria-hidden="true"></span>About</h2>
     <div class="about-scroll">
       <p class="about-text">I work on <strong>oneGov</strong>, the platform government services in the Maldives run on. I re-engineer those services and build the internal tooling the solutions team uses to ship them.</p>
       <p class="about-text">On my own I build and run <strong>multi-tenant SaaS products</strong> end to end. I design the schema, write the API and the React front end, set up the infrastructure, and write the tests.</p>
       <p class="about-text">Most of what I build runs in production.</p>
     </div>
     <div class="stats">
-      <div class="stat-box"><div class="stat-number">10+</div><div class="stat-label">Shipped</div></div>
+      <div class="stat-box"><div class="stat-number">12</div><div class="stat-label">Shipped</div></div>
       <div class="stat-box"><div class="stat-number">7</div><div class="stat-label">In production</div></div>
     </div>
   </section>
 
   <!-- SELECTED WORKS -->
-  <section class="card card-works anim" style="animation-delay:.1s">
+  <section class="card card-works anim" aria-labelledby="lbl-works" style="animation-delay:.1s">
     <div class="works-header">
-      <div class="card-label" style="margin-bottom:0"><span class="label-dot"></span>Selected works</div>
+      <h2 class="card-label" id="lbl-works" style="margin-bottom:0"><span class="label-dot" aria-hidden="true"></span>Selected works</h2>
       <span class="works-count">07 projects</span>
     </div>
     <div class="works-list">
 
       <div class="work-row">
-        <span class="work-status internal" title="Internal"></span>
+        <span class="work-status internal" aria-hidden="true"></span><span class="sr-only">Internal.</span>
         <span class="work-name">GovCraft</span>
         <span class="work-desc">oneGov automation server</span>
         <span class="work-tags"><span class="work-tag">TypeScript</span><span class="work-tag">Node.js</span><span class="work-tag">MCP</span></span>
-        <span class="work-arrow"></span>
+        <span class="work-arrow" aria-hidden="true"></span>
       </div>
 
       <a class="work-row" href="https://github.com/sivscriptt/onegov-autofill" target="_blank" rel="noopener">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">oneGov Autofill</span>
         <span class="work-desc">QA form-fill extension</span>
         <span class="work-tags"><span class="work-tag">JavaScript</span><span class="work-tag">MV3</span></span>
-        <span class="work-arrow">→</span>
+        <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
       <a class="work-row" href="https://solyscloud.com" target="_blank" rel="noopener">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">Solys Cloud</span>
         <span class="work-desc">Hotel property management SaaS</span>
         <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">tRPC</span><span class="work-tag">Postgres</span></span>
-        <span class="work-arrow">→</span>
+        <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
       <div class="work-row">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">Osyra YMS</span>
         <span class="work-desc">Yacht charter platform</span>
         <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span><span class="work-tag">S3</span></span>
-        <span class="work-arrow"></span>
+        <span class="work-arrow" aria-hidden="true"></span>
       </div>
 
       <a class="work-row" href="https://seraioceandream.com" target="_blank" rel="noopener">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">SERAI Ocean Dream</span>
         <span class="work-desc">Private yacht charter, Maldives</span>
         <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span></span>
-        <span class="work-arrow">→</span>
+        <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
       <a class="work-row" href="https://isla-retreat.mhd-shiwan.workers.dev" target="_blank" rel="noopener">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">Isla Retreat &amp; Ops</span>
         <span class="work-desc">Hotel site + admin console</span>
         <span class="work-tags"><span class="work-tag">Workers</span><span class="work-tag">D1</span><span class="work-tag">RBAC</span></span>
-        <span class="work-arrow">→</span>
+        <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
       <a class="work-row" href="https://amplii.social" target="_blank" rel="noopener">
-        <span class="work-status" title="Live"></span>
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
         <span class="work-name">Amplii</span>
         <span class="work-desc">Word-of-mouth for local business</span>
         <span class="work-tags"><span class="work-tag">React 19</span><span class="work-tag">Vite</span></span>
-        <span class="work-arrow">→</span>
+        <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
     </div>
   </section>
 
   <!-- TECH STACK -->
-  <section class="card card-tech anim" style="animation-delay:.14s">
-    <div class="card-label"><span class="label-dot"></span>Tech stack</div>
+  <section class="card card-tech anim" aria-labelledby="lbl-tech" style="animation-delay:.14s">
+    <h2 class="card-label" id="lbl-tech"><span class="label-dot" aria-hidden="true"></span>Tech stack</h2>
     <div class="tech-grid">
       <span class="tech-pill primary">TypeScript</span>
       <span class="tech-pill primary">React</span>
@@ -452,20 +498,20 @@
   </section>
 
   <!-- CURRENTLY -->
-  <section class="card card-now anim" style="animation-delay:.18s">
-    <div class="card-label"><span class="label-dot"></span>Currently</div>
+  <section class="card card-now anim" aria-labelledby="lbl-now" style="animation-delay:.18s">
+    <h2 class="card-label" id="lbl-now"><span class="label-dot" aria-hidden="true"></span>Currently</h2>
     <div class="now-scroll">
       <div class="now-section">
         <div class="now-label">Building</div>
         <div class="now-item">
-          <span class="now-mark">◆</span>
+          <span class="now-mark" aria-hidden="true">◆</span>
           <div class="now-info">
             <div class="now-title">Solys Cloud</div>
             <div class="now-meta">Hotel property management SaaS</div>
           </div>
         </div>
         <div class="now-item">
-          <span class="now-mark">◆</span>
+          <span class="now-mark" aria-hidden="true">◆</span>
           <div class="now-info">
             <div class="now-title">GovCraft</div>
             <div class="now-meta">oneGov automation server</div>
@@ -475,7 +521,7 @@
       <div class="now-section">
         <div class="now-label">At work</div>
         <div class="now-item">
-          <span class="now-mark">◆</span>
+          <span class="now-mark" aria-hidden="true">◆</span>
           <div class="now-info">
             <div class="now-title">oneGov · MINDCo</div>
             <div class="now-meta">Service re-engineering</div>
@@ -485,7 +531,7 @@
       <div class="now-section">
         <div class="now-label">Recently shipped</div>
         <div class="now-item">
-          <span class="now-mark">◆</span>
+          <span class="now-mark" aria-hidden="true">◆</span>
           <div class="now-info">
             <div class="now-title">Isla Retreat &amp; Ops</div>
             <div class="now-meta">Marketing site + staff console on the edge</div>
@@ -496,8 +542,8 @@
   </section>
 
   <!-- SNIPPET -->
-  <section class="card card-code anim" style="animation-delay:.22s">
-    <div class="card-label"><span class="label-dot"></span>Snippet</div>
+  <section class="card card-code anim" aria-labelledby="lbl-snippet" style="animation-delay:.22s">
+    <h2 class="card-label" id="lbl-snippet"><span class="label-dot" aria-hidden="true"></span>Snippet</h2>
     <div class="code-window">
       <div class="code-titlebar">
         <span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
@@ -508,7 +554,7 @@
 <div class="code-line"><span class="code-num">2</span><span class="code-content">  <span class="cf">role</span>: <span class="cs">"Solutions Analyst"</span>,</span></div>
 <div class="code-line"><span class="code-num">3</span><span class="code-content">  <span class="cf">alsoDoes</span>: <span class="cs">"full-stack"</span>,</span></div>
 <div class="code-line"><span class="code-num">4</span><span class="code-content">  <span class="cf">stack</span>: [<span class="cs">"TS"</span>, <span class="cs">"React"</span>, <span class="cs">"Postgres"</span>],</span></div>
-<div class="code-line"><span class="code-num">5</span><span class="code-content">  <span class="cf">shipped</span>: <span class="cn">10</span>,</span></div>
+<div class="code-line"><span class="code-num">5</span><span class="code-content">  <span class="cf">shipped</span>: <span class="cn">12</span>,</span></div>
 <div class="code-line"><span class="code-num">6</span><span class="code-content">  <span class="cf">testsWritten</span>: <span class="cn">773</span>,</span></div>
 <div class="code-line"><span class="code-num">7</span><span class="code-content">};</span></div>
 <div class="code-line"><span class="code-num">8</span><span class="code-content"> </span></div>
@@ -518,8 +564,8 @@
   </section>
 
   <!-- CONNECT -->
-  <section class="card card-connect anim" style="animation-delay:.26s">
-    <div class="card-label"><span class="label-dot"></span>Connect</div>
+  <section class="card card-connect anim" aria-labelledby="lbl-connect" style="animation-delay:.26s">
+    <h2 class="card-label" id="lbl-connect"><span class="label-dot" aria-hidden="true"></span>Connect</h2>
     <div class="connect-list">
       <a class="connect-item" href="mailto:hello.siv@proton.me">
         <span class="connect-icon">
@@ -529,7 +575,7 @@
           <span class="connect-name">Email</span>
           <span class="connect-handle">hello.siv@proton.me</span>
         </span>
-        <span class="connect-arrow">→</span>
+        <span class="connect-arrow" aria-hidden="true">→</span>
       </a>
       <a class="connect-item" href="https://github.com/sivscriptt" target="_blank" rel="noopener">
         <span class="connect-icon">
@@ -539,7 +585,7 @@
           <span class="connect-name">GitHub</span>
           <span class="connect-handle">@sivscriptt</span>
         </span>
-        <span class="connect-arrow">→</span>
+        <span class="connect-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </section>
@@ -550,14 +596,13 @@
 (function () {
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1101px)').matches;
 
   /* ---- typing terminal line ---- */
   var term = document.getElementById('term');
-  var phrase = 'echo "from schema to deploy"';
-  if (reduce) {
-    term.textContent = phrase;
-  } else {
+  var phrase = term.textContent;
+  if (!reduce) {
+    term.textContent = '';
     var i = 0;
     (function type() {
       if (i <= phrase.length) {
