@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovCraft · Mohamed Shiwan</title>
+<meta name="description" content="An automation server for oneGov, the platform behind government services in the Maldives. Built by Mohamed Shiwan at MINDCo.">
+<meta name="author" content="Mohamed Shiwan">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://sivscriptt.github.io/portfolio/govcraft/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sivscriptt.github.io/portfolio/govcraft/">
+<meta property="og:title" content="GovCraft · Mohamed Shiwan">
+<meta property="og:description" content="An automation server for oneGov, the platform behind government services in the Maldives.">
+<meta property="og:site_name" content="Mohamed Shiwan">
+<meta property="og:image" content="https://sivscriptt.github.io/portfolio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #000000; --surface: #111111; --border: #2a2a2a; --border-hover: #3a3a3a;
+    --white: #ffffff; --gray-100: #f5f5f5; --gray-300: #a0a0a0; --gray-500: #8a8a8a;
+    --radius: 12px; --radius-sm: 8px;
+  }
+  body {
+    background: var(--black); color: var(--gray-100);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .03;
+    background-image:
+      linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; padding: 40px 24px 96px; }
+  @media (max-width: 680px) { .wrap { padding: 28px 18px 64px; } }
+
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; border-radius: 3px; }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--gray-500);
+    padding: 7px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .back:hover { color: var(--white); border-color: var(--border-hover); }
+
+  header { margin: 40px 0 0; }
+  h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.08; }
+  .lede { margin-top: 14px; font-size: 17px; color: var(--gray-300); max-width: 34rem; }
+
+  .facts {
+    display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 24px;
+    padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500);
+  }
+  .facts b { color: var(--gray-100); font-weight: 500; }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; list-style: none; }
+  .stack li {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .02em;
+    padding: 4px 10px; background: rgba(255,255,255,.04);
+    border: 1px solid var(--border); border-radius: 20px; color: var(--gray-500);
+  }
+
+  h2 {
+    margin: 44px 0 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--gray-500);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
+
+  p { margin-bottom: 16px; color: var(--gray-300); }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--white); font-weight: 500; }
+
+  .gate {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); padding: 20px 22px; margin-bottom: 12px;
+  }
+  .gate h3 {
+    font-size: 15px; font-weight: 600; color: var(--white); letter-spacing: -.01em; margin-bottom: 8px;
+  }
+  .gate p { margin-bottom: 0; font-size: 15px; }
+
+  .edges { list-style: none; margin-top: 4px; }
+  .edges li {
+    position: relative; padding-left: 20px; margin-bottom: 12px;
+    color: var(--gray-300); font-size: 15px;
+  }
+  .edges li:last-child { margin-bottom: 0; }
+  .edges li::before {
+    content: ''; position: absolute; left: 2px; top: .68em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--border-hover);
+  }
+  .edges b { color: var(--white); font-weight: 500; }
+
+  footer {
+    margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border);
+    font-size: 14px; color: var(--gray-500);
+  }
+  footer a { color: var(--gray-100); text-decoration: none; border-bottom: 1px solid var(--border); }
+  footer a:hover { border-color: var(--gray-100); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<div class="wrap">
+  <a class="back" href="../">← Back</a>
+
+  <header>
+    <h1>GovCraft</h1>
+    <p class="lede">An automation server for oneGov, the platform behind government services in the Maldives.</p>
+    <div class="facts">
+      <span>Role <b>Sole developer</b></span>
+      <span>Where <b>Internal at MINDCo</b></span>
+      <span>Status <b>In use across the team</b></span>
+    </div>
+    <ul class="stack">
+      <li>TypeScript</li><li>Node.js</li><li>Model Context Protocol</li><li>REST</li><li>GitHub Actions</li><li>Vitest</li>
+    </ul>
+  </header>
+
+  <h2>The problem</h2>
+  <p>A oneGov service is assembled through the platform's own interface: a workflow canvas, form builders, database tables, document templates, task definitions and payment steps. Building one means hundreds of clicks across all of those, and every piece references the others by id.</p>
+  <p>A single stale reference or an unreachable branch does not announce itself. It surfaces later, when a citizen's application is already stuck in production and somebody has to trace it by hand. There was no way to check a service before activating it, and no reliable way to repeat a build across environments.</p>
+
+  <h2>What I built</h2>
+  <p>A typed server that exposes the platform's API as <strong>162 callable operations</strong>, so a whole service can be created and configured from code instead of by hand. Workflows, forms, DataHub schemas, document templates, tasks and payments are all reachable programmatically.</p>
+  <p>On top of that sit around <strong>30 versioned playbooks</strong> encoding the team's standard operating procedures: how to build a workflow, how to clone one safely into a new version, how to design a form, how to migrate a document template between formats. Those procedures used to live in people's heads and in documents nobody opened. Now they are executable.</p>
+
+  <h2>The part that mattered</h2>
+  <p>Two quality gates the team did not previously have.</p>
+  <div class="gate">
+    <h3>Pre-flight linting</h3>
+    <p>A deterministic pass that reads an entire service and reports what is broken before anyone activates it: references pointing at nodes that no longer exist, graph deadlocks where an application can reach a state it can never leave, and triggers wired to events that never fire.</p>
+  </div>
+  <div class="gate">
+    <h3>Unattended smoke runs</h3>
+    <p>The server submits a real application through a service in the training environment and follows it to completion. The flow is proven to work before go-live rather than after, which is the difference between finding a defect in testing and finding it in a citizen's case file.</p>
+  </div>
+
+  <h2>Sharp edges, now encoded</h2>
+  <p>The platform has failure modes that took real debugging to find. Each one is a guard in the server rather than something the next person has to rediscover.</p>
+  <ul class="edges">
+    <li><b>Expressions are substituted before they are parsed.</b> A reference nested inside a string literal produces a parse error at runtime, so the instance fails rather than the expression simply evaluating to nothing.</li>
+    <li><b>A form field bound to a variable of the wrong type kills the handshake.</b> No instance is created at all, which means there is nothing in any list to find and nothing to restart. It is invisible unless you know to look.</li>
+    <li><b>Services built through the API without an output specification can never be duplicated.</b> The copy fails permanently, long after the service was created. The server now sets it on the way in.</li>
+  </ul>
+
+  <h2>Where it stands</h2>
+  <p>Around 12,000 lines of TypeScript with its own CI, release automation and test suite. It is used across the solutions team to build, migrate and quality-gate oneGov services, and it replaced manual configuration as the way that work gets done.</p>
+
+  <footer>
+    <p>Mohamed Shiwan · <a href="../">Back to portfolio</a> · <a href="mailto:hello.siv@proton.me">hello.siv@proton.me</a></p>
+  </footer>
+</div>
+</body>
+</html>
