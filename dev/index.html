@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Shiwan · Full-stack Developer</title>
+<meta name="description" content="Full-stack developer in the Maldives. I build web apps, booking systems and staff consoles end to end, and keep them running after launch.">
+<meta name="author" content="Mohamed Shiwan">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://sivscriptt.github.io/portfolio/dev/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sivscriptt.github.io/portfolio/dev/">
+<meta property="og:title" content="Mohamed Shiwan · Full-stack Developer">
+<meta property="og:description" content="I build and run production web applications end to end.">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mohamed Shiwan">
+<meta property="og:image" content="https://sivscriptt.github.io/portfolio/dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mohamed Shiwan, full-stack developer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mohamed Shiwan · Full-stack Developer">
+<meta name="twitter:description" content="I build and run production web applications end to end.">
+<meta name="twitter:image" content="https://sivscriptt.github.io/portfolio/dev/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamed Shiwan",
+  "url": "https://sivscriptt.github.io/portfolio/dev/",
+  "jobTitle": "Full-stack Developer",
+  "email": "hello.siv@proton.me",
+  "address": { "@type": "PostalAddress", "addressLocality": "Mal\u00e9", "addressCountry": "MV" },
+  "sameAs": ["https://github.com/sivscriptt"],
+  "knowsAbout": ["TypeScript","React","Next.js","Node.js","PostgreSQL","tRPC","Drizzle","REST API design","Cloudflare Workers","CI/CD","Application security"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #000000; --surface: #111111; --surface-hover: #1a1a1a;
+    --border: #2a2a2a; --border-hover: #3a3a3a; --white: #ffffff;
+    --gray-100: #f5f5f5; --gray-300: #a0a0a0; --gray-500: #8a8a8a;
+    --gray-700: #333333;
+    --radius: 12px; --radius-sm: 8px; --gap: 10px;
+  }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--black); color: var(--white);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------- CURSOR ---------- */
+  .cursor-dot {
+    width: 8px; height: 8px; background: var(--white); border-radius: 50%;
+    position: fixed; top: 0; left: 0; pointer-events: none;
+    z-index: 9999; mix-blend-mode: difference; opacity: 0;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 50%; position: fixed; top: 0; left: 0; opacity: 0;
+    pointer-events: none; z-index: 9998;
+    transition: width .2s, height .2s, border-color .2s, opacity .2s;
+  }
+  .cursor-ring.hovering { width: 52px; height: 52px; border-color: rgba(255,255,255,0.6); }
+  @media (hover: hover) and (pointer: fine) and (min-width: 1101px) {
+    body { cursor: none; }
+    p, .about-text, .intro-role, .code-body { cursor: text; }
+  }
+
+  /* ---------- FOCUS ---------- */
+  a:focus-visible, .sound-toggle:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: -2px;          /* negative so overflow:hidden cannot crop it */
+    border-radius: var(--radius-sm);
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- BACKDROP ---------- */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.03;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .bg-glow {
+    position: fixed; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.045) 0%, transparent 70%);
+    pointer-events: none; z-index: 0; transform: translate(-50%,-50%);
+    left: 50%; top: 40%; transition: left .5s ease, top .5s ease;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .wrapper {
+    height: 100vh; height: 100dvh; padding: var(--gap);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "profile   about      works    works"
+      "tech      currently  snippet  connect";
+    gap: var(--gap);
+    position: relative; z-index: 1;
+  }
+
+  /* ---------- CARD ---------- */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; display: flex;
+    flex-direction: column; position: relative; overflow: hidden;
+    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    min-height: 0;
+  }
+  .card:hover { border-color: var(--border-hover); }
+  .card.tilt {
+    transform: perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    pointer-events: none;
+  }
+  .card::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(255,255,255,0.03), transparent 40%);
+    pointer-events: none; opacity: 0; transition: opacity .3s ease;
+  }
+  .card:hover::after { opacity: 1; }
+
+  .card-label {
+    margin-top: 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .12em; color: var(--gray-500);
+    margin-bottom: 16px; flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+  }
+  .label-dot { width: 5px; height: 5px; background: var(--gray-700); border-radius: 50%; }
+
+  /* ---------- PROFILE ---------- */
+  .card-intro { grid-area: profile; }
+  .intro-name {
+    font-size: clamp(28px, 3vw, 40px); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1.1; margin-bottom: 14px;
+  }
+  .intro-role { font-size: clamp(13px, 1.2vw, 15px); color: var(--gray-300); line-height: 1.55; }
+  .intro-role strong { color: var(--white); font-weight: 500; }
+  .terminal-line {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500);
+    margin-top: 18px; display: flex; align-items: center; gap: 6px;
+  }
+  .terminal-prompt { color: #22c55e; }
+  .terminal-text { overflow: hidden; white-space: nowrap; }
+  .terminal-cursor {
+    display: inline-block; width: 7px; height: 13px; background: var(--white);
+    animation: blink 1s step-end infinite; flex-shrink: 0;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .intro-focus {
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .intro-focus span {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--gray-500);
+    padding: 4px 9px; border: 1px solid var(--border); border-radius: 20px;
+    background: rgba(255,255,255,0.02);
+  }
+  .intro-loc {
+    padding-top: 14px; margin-top: 12px; border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--gray-700); letter-spacing: .06em; text-transform: uppercase;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .card-about { grid-area: about; }
+  .about-scroll { flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+  .about-scroll::-webkit-scrollbar { display: none; }
+  .about-text { font-size: 13px; color: var(--gray-300); line-height: 1.65; margin-bottom: 12px; }
+  .about-text:last-of-type { margin-bottom: 0; }
+  .about-text strong { color: var(--white); font-weight: 500; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; flex-shrink: 0; }
+  @media (max-width: 680px) { .about-scroll { overflow: visible; } }
+  .stat-box {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; text-align: center;
+  }
+  .stat-number { font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1; }
+  .stat-label { font-size: 9px; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; margin-top: 5px; }
+
+  /* ---------- WORKS ---------- */
+  .card-works { grid-area: works; padding: 20px; }
+  .works-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-shrink: 0; }
+  .works-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500); }
+  .works-list { flex: 1; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; scrollbar-width: none; }
+  .works-list::-webkit-scrollbar { display: none; }
+  .work-row {
+    display: grid; grid-template-columns: auto 1fr auto auto auto;
+    align-items: center; gap: 12px; padding: 10px 12px;
+    border-radius: var(--radius-sm); text-decoration: none; color: var(--white);
+    transition: background .2s ease; min-height: 42px;
+  }
+  a.work-row:hover { background: var(--surface-hover); }
+  a.work-row:hover .work-arrow { opacity: 1; transform: translateX(0); }
+  .work-status { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: #22c55e; }
+  .work-status.internal { background: var(--gray-500); }
+  .work-name { font-size: 14px; font-weight: 500; letter-spacing: -.01em; color: var(--gray-100); }
+  .work-desc {
+    font-size: 12px; color: var(--gray-500); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-width: 210px; text-align: right;
+  }
+  .work-tags { display: flex; gap: 5px; }
+  .work-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 3px 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 20px; color: var(--gray-500); white-space: nowrap;
+  }
+  .work-arrow { font-size: 13px; color: var(--gray-500); opacity: 0; transform: translateX(-4px); transition: all .2s ease; width: 10px; }
+
+  /* ---------- TECH ---------- */
+  .card-tech { grid-area: tech; }
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; overflow-y: auto; scrollbar-width: none; }
+  .tech-grid::-webkit-scrollbar { display: none; }
+  .tech-pill {
+    padding: 6px 11px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 7px; font-size: 12px; font-weight: 500; color: var(--gray-300);
+    transition: border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .tech-pill:hover { border-color: var(--gray-500); color: var(--white); transform: translateY(-1px); }
+  .tech-pill.primary { background: rgba(255,255,255,0.08); border-color: var(--gray-700); color: var(--white); }
+
+  /* ---------- CURRENTLY ---------- */
+  .card-now { grid-area: currently; }
+  .now-scroll { flex: 1; overflow-y: auto; scrollbar-width: none; min-height: 0; }
+  .now-scroll::-webkit-scrollbar { display: none; }
+  .now-section { margin-bottom: 12px; }
+  .now-section:last-child { margin-bottom: 0; }
+  .now-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px;
+  }
+  .now-item {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+    border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+  }
+  .now-item + .now-item { margin-top: 4px; }
+  .now-mark { color: var(--gray-500); font-size: 10px; flex-shrink: 0; }
+  .now-info { flex: 1; min-width: 0; }
+  .now-title { font-size: 12px; font-weight: 500; color: var(--gray-100); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .now-meta { font-size: 10px; color: var(--gray-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ---------- SNIPPET ---------- */
+  .card-code { grid-area: snippet; padding: 16px; }
+  .code-window { background: #0d0d0d; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex: 1; display: flex; flex-direction: column; }
+  .code-titlebar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .code-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .code-dot.r { background: #ff5f57; } .code-dot.y { background: #febc2e; } .code-dot.g { background: #28c840; }
+  .code-filename { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500); margin-left: 6px; }
+  .code-body {
+    padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    line-height: 1.6; overflow: auto; scrollbar-width: none; flex: 1;
+  }
+  .code-body::-webkit-scrollbar { display: none; }
+  .code-line { display: flex; gap: 12px; }
+  .code-num { color: var(--gray-500); user-select: none; min-width: 14px; text-align: right; flex-shrink: 0; }
+  .code-content { white-space: pre; }
+  .ck { color: #c678dd; } .cs { color: #98c379; } .cf { color: #61afef; }
+  .cv { color: #e06c75; } .cn { color: #d19a66; }
+
+  /* ---------- CONNECT ---------- */
+  .card-connect { grid-area: connect; }
+  .connect-list { display: flex; flex-direction: column; gap: 8px; }
+  .connect-item {
+    display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 60px;
+    border-radius: var(--radius-sm); text-decoration: none; color: var(--white);
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .connect-item:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+  .connect-icon {
+    width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .connect-icon svg { width: 17px; height: 17px; fill: var(--gray-100); }
+  .connect-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .connect-name { font-weight: 500; font-size: 13px; display: block; }
+  .connect-handle {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+  }
+  .connect-arrow { font-size: 13px; color: var(--gray-500); flex-shrink: 0; }
+  .connect-item:hover .connect-arrow { color: var(--gray-300); }
+  .connect-foot {
+    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-700);
+    letter-spacing: .05em; display: flex; justify-content: space-between; gap: 8px;
+  }
+
+  /* ---------- ENTRANCE ---------- */
+  .anim { animation: rise .55s cubic-bezier(.16,1,.3,1) backwards; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-height: 760px) and (min-width: 1101px) {
+    html, body { height: auto; overflow: auto; }
+    .wrapper {
+      height: auto; min-height: 100dvh;
+      grid-template-rows: minmax(300px, auto) minmax(300px, auto);
+    }
+  }
+  @media (max-width: 1100px) {
+    html, body { height: auto; overflow: auto; }
+    .wrapper {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "profile   about"
+        "works     works"
+        "tech      currently"
+        "snippet   connect";
+      height: auto; min-height: 100dvh; padding: 12px; gap: 10px;
+    }
+    .card-works { max-height: 52vh; }
+    .card-code { min-height: 260px; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+  @media (max-width: 680px) {
+    html, body { height: auto; overflow: auto; }
+    .wrapper { grid-template-columns: 1fr; grid-template-areas: none; padding: 10px; gap: 10px; }
+    .card { padding: 18px; grid-area: auto !important; }
+    .intro-name { font-size: 32px; }
+    .intro-role { font-size: 14px; }
+    .card-works { max-height: none; padding: 16px; }
+    .works-list { overflow: visible; }
+    .work-row { grid-template-columns: auto 1fr auto; gap: 10px; padding: 11px 10px; }
+    .work-desc, .work-tags { display: none; }
+    .work-arrow { opacity: 1; transform: none; }
+    .card-code { min-height: 0; padding: 16px; }
+    .code-body { font-size: 10.5px; }
+    .connect-item { height: 56px; }
+    .card.tilt { transform: none; box-shadow: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim { animation: none; opacity: 1; transform: none; }
+    .terminal-cursor { animation: none; }
+    .card.tilt { transform: none; }
+    .bg-glow { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<main class="wrapper">
+
+  <!-- PROFILE -->
+  <section class="card card-intro anim" aria-labelledby="lbl-profile" style="animation-delay:.02s">
+    <h2 class="card-label" id="lbl-profile"><span class="label-dot" aria-hidden="true"></span>Profile</h2>
+    <div>
+      <h1 class="intro-name">Mohamed<br>Shiwan</h1>
+      <p class="intro-role"><strong>Full-stack developer.</strong> I build web apps for businesses end to end, and I keep them running after launch.</p>
+      <div class="terminal-line">
+        <span class="terminal-prompt">$</span>
+        <span class="terminal-text" id="term">echo "from schema to deploy"</span>
+        <span class="terminal-cursor"></span>
+      </div>
+    </div>
+    <div class="intro-focus"><span>Web apps</span><span>SaaS</span><span>Hosting</span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="card card-about anim" aria-labelledby="lbl-about" style="animation-delay:.06s">
+    <h2 class="card-label" id="lbl-about"><span class="label-dot" aria-hidden="true"></span>About</h2>
+    <div class="about-scroll">
+      <p class="about-text">Most of what I do is end to end. The schema, the API, the front end, the server it runs on, and the part where something breaks and someone has to find out why.</p>
+      <p class="about-text">Most of my work is for <strong>hospitality and tourism</strong> in the Maldives: booking and property systems, staff consoles, and the sites that sell them. You deal with one person from the first call to launch day, and after.</p>
+    </div>
+    <div class="stats">
+      <div class="stat-box"><div class="stat-number">6</div><div class="stat-label">Live products</div></div>
+      <div class="stat-box"><div class="stat-number">1</div><div class="stat-label">Point of contact</div></div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORKS -->
+  <section class="card card-works anim" aria-labelledby="lbl-works" style="animation-delay:.1s">
+    <div class="works-header">
+      <h2 class="card-label" id="lbl-works" style="margin-bottom:0"><span class="label-dot" aria-hidden="true"></span>Selected works</h2>
+      <span class="works-count">06 projects</span>
+    </div>
+    <div class="works-list">
+
+      <a class="work-row" href="https://solyscloud.com" target="_blank" rel="noopener">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">Solys Cloud</span>
+        <span class="work-desc">Hotel property management SaaS</span>
+        <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">tRPC</span><span class="work-tag">Postgres</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <div class="work-row">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">Osyra YMS</span>
+        <span class="work-desc">Yacht charter platform</span>
+        <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span><span class="work-tag">S3</span></span>
+        <span class="work-arrow" aria-hidden="true"></span>
+      </div>
+
+      <a class="work-row" href="https://seraioceandream.com" target="_blank" rel="noopener">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">SERAI Ocean Dream</span>
+        <span class="work-desc">Charter site + ops console</span>
+        <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">Postgres</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="work-row" href="https://amplii.social" target="_blank" rel="noopener">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">Amplii</span>
+        <span class="work-desc">Word-of-mouth for local business</span>
+        <span class="work-tags"><span class="work-tag">React 19</span><span class="work-tag">Vite</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="work-row" href="https://1192maldives.com" target="_blank" rel="noopener">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">1192</span>
+        <span class="work-desc">Curated Maldives stays directory</span>
+        <span class="work-tags"><span class="work-tag">Astro 5</span><span class="work-tag">Cloudflare</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="work-row" href="https://isla-retreat.mhd-shiwan.workers.dev" target="_blank" rel="noopener">
+        <span class="work-status" aria-hidden="true"></span><span class="sr-only">Live.</span>
+        <span class="work-name">Isla Retreat &amp; Ops</span>
+        <span class="work-desc">Hotel site + admin console</span>
+        <span class="work-tags"><span class="work-tag">Workers</span><span class="work-tag">D1</span><span class="work-tag">RBAC</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="card card-tech anim" aria-labelledby="lbl-tech" style="animation-delay:.14s">
+    <h2 class="card-label" id="lbl-tech"><span class="label-dot" aria-hidden="true"></span>Tech stack</h2>
+    <div class="tech-grid">
+      <span class="tech-pill primary">TypeScript</span>
+      <span class="tech-pill primary">React</span>
+      <span class="tech-pill primary">Next.js</span>
+      <span class="tech-pill primary">Node.js</span>
+      <span class="tech-pill primary">PostgreSQL</span>
+      <span class="tech-pill">tRPC</span>
+      <span class="tech-pill">Drizzle</span>
+      <span class="tech-pill">Auth.js</span>
+      <span class="tech-pill">Zod</span>
+      <span class="tech-pill">Tailwind</span>
+      <span class="tech-pill">REST API</span>
+      <span class="tech-pill">SQL</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Rust</span>
+      <span class="tech-pill">Swift</span>
+      <span class="tech-pill">Playwright</span>
+      <span class="tech-pill">Vitest</span>
+      <span class="tech-pill">Cloudflare</span>
+      <span class="tech-pill">DigitalOcean</span>
+      <span class="tech-pill">Nginx</span>
+      <span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">Terraform</span>
+      <span class="tech-pill">GCP</span>
+      <span class="tech-pill">Git</span>
+      <span class="tech-pill">OWASP</span>
+    </div>
+  </section>
+
+  <!-- WHAT I BUILD -->
+  <section class="card card-now anim" aria-labelledby="lbl-now" style="animation-delay:.18s">
+    <h2 class="card-label" id="lbl-now"><span class="label-dot" aria-hidden="true"></span>What I build</h2>
+    <div class="now-scroll">
+      <div class="now-section">
+        <div class="now-item">
+          <span class="now-mark" aria-hidden="true">◆</span>
+          <div class="now-info">
+            <div class="now-title">Booking &amp; property systems</div>
+            <div class="now-meta">Rooms, rates, bookings, guests</div>
+          </div>
+        </div>
+        <div class="now-item">
+          <span class="now-mark" aria-hidden="true">◆</span>
+          <div class="now-info">
+            <div class="now-title">Staff &amp; admin consoles</div>
+            <div class="now-meta">Roles, audit trail, day-to-day ops</div>
+          </div>
+        </div>
+        <div class="now-item">
+          <span class="now-mark" aria-hidden="true">◆</span>
+          <div class="now-info">
+            <div class="now-title">Marketing sites</div>
+            <div class="now-meta">Fast, mobile first, easy to update</div>
+          </div>
+        </div>
+        <div class="now-item">
+          <span class="now-mark" aria-hidden="true">◆</span>
+          <div class="now-info">
+            <div class="now-title">Hosting &amp; upkeep</div>
+            <div class="now-meta">Deploys, backups, fixes after launch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNIPPET -->
+  <section class="card card-code anim" aria-labelledby="lbl-snippet" style="animation-delay:.22s">
+    <h2 class="card-label" id="lbl-snippet"><span class="label-dot" aria-hidden="true"></span>Snippet</h2>
+    <div class="code-window">
+      <div class="code-titlebar">
+        <span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+        <span class="code-filename">shiwan.ts</span>
+      </div>
+      <div class="code-body">
+<div class="code-line"><span class="code-num">1</span><span class="code-content"><span class="ck">const</span> <span class="cv">shiwan</span> = {</span></div>
+<div class="code-line"><span class="code-num">2</span><span class="code-content">  <span class="cf">role</span>: <span class="cs">"Full-stack Developer"</span>,</span></div>
+<div class="code-line"><span class="code-num">3</span><span class="code-content">  <span class="cf">alsoDoes</span>: <span class="cs">"hosting + upkeep"</span>,</span></div>
+<div class="code-line"><span class="code-num">4</span><span class="code-content">  <span class="cf">stack</span>: [<span class="cs">"TS"</span>, <span class="cs">"React"</span>, <span class="cs">"Postgres"</span>],</span></div>
+<div class="code-line"><span class="code-num">5</span><span class="code-content">  <span class="cf">liveProducts</span>: <span class="cn">6</span>,</span></div>
+<div class="code-line"><span class="code-num">6</span><span class="code-content">  <span class="cf">testsWritten</span>: <span class="cn">773</span>,</span></div>
+<div class="code-line"><span class="code-num">7</span><span class="code-content">};</span></div>
+<div class="code-line"><span class="code-num">8</span><span class="code-content"> </span></div>
+<div class="code-line"><span class="code-num">9</span><span class="code-content"><span class="ck">export default</span> <span class="cv">shiwan</span>;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="card card-connect anim" aria-labelledby="lbl-connect" style="animation-delay:.26s">
+    <h2 class="card-label" id="lbl-connect"><span class="label-dot" aria-hidden="true"></span>Connect</h2>
+    <div class="connect-list">
+      <a class="connect-item" href="mailto:hello.siv@proton.me">
+        <span class="connect-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-8 4.62-8-4.62V6l8 4.62L20 6v2.24Z"/></svg>
+        </span>
+        <span class="connect-info">
+          <span class="connect-name">Email</span>
+          <span class="connect-handle">hello.siv@proton.me</span>
+        </span>
+        <span class="connect-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="connect-item" href="https://github.com/sivscriptt" target="_blank" rel="noopener">
+        <span class="connect-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </span>
+        <span class="connect-info">
+          <span class="connect-name">GitHub</span>
+          <span class="connect-handle">@sivscriptt</span>
+        </span>
+        <span class="connect-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1101px)').matches;
+
+  /* ---- typing terminal line ---- */
+  var term = document.getElementById('term');
+  var phrase = term.textContent;
+  if (!reduce) {
+    term.textContent = '';
+    var i = 0;
+    (function type() {
+      if (i <= phrase.length) {
+        term.textContent = phrase.slice(0, i++);
+        setTimeout(type, 38);
+      }
+    })();
+  }
+
+  if (!fine || reduce) return;
+
+  /* ---- custom cursor ---- */
+  var dot = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  var glow = document.querySelector('.bg-glow');
+  var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  var rx = mx, ry = my, shown = false;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!shown) { shown = true; dot.style.opacity = 1; ring.style.opacity = 1; }
+    dot.style.transform = 'translate(' + (mx - 4) + 'px,' + (my - 4) + 'px)';
+    glow.style.left = mx + 'px';
+    glow.style.top = my + 'px';
+  }, { passive: true });
+
+  (function loop() {
+    rx += (mx - rx) * 0.16;
+    ry += (my - ry) * 0.16;
+    ring.style.transform = 'translate(' + (rx - 18) + 'px,' + (ry - 18) + 'px)';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a, .tech-pill, .work-row').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hovering'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hovering'); });
+  });
+
+  /* ---- per-card spotlight + tilt ---- */
+  document.querySelectorAll('.card').forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      var px = e.clientX - r.left, py = e.clientY - r.top;
+      card.style.setProperty('--mouse-x', px + 'px');
+      card.style.setProperty('--mouse-y', py + 'px');
+      card.style.setProperty('--tilt-y', ((px / r.width - 0.5) * 3).toFixed(2) + 'deg');
+      card.style.setProperty('--tilt-x', ((0.5 - py / r.height) * 3).toFixed(2) + 'deg');
+      card.classList.add('tilt');
+    }, { passive: true });
+    card.addEventListener('mouseleave', function () {
+      card.classList.remove('tilt');
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
+    });
+  });
+})();
+</script>
+</body>
+</html>
