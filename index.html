@@ -215,6 +215,8 @@
   a.work-row:hover .work-arrow { opacity: 1; transform: translateX(0); }
   .work-status { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: #22c55e; }
   .work-status.internal { background: var(--gray-500); }
+  .work-status.concept { background: #f59e0b; }
+  .work-tag.concept { color: #f5b544; border-color: rgba(245,158,11,0.35); }
   .work-name { font-size: 14px; font-weight: 500; letter-spacing: -.01em; color: var(--gray-100); }
   .work-desc {
     font-size: 12px; color: var(--gray-500); white-space: nowrap;
@@ -421,7 +423,7 @@
   <section class="card card-works anim" aria-labelledby="lbl-works" style="animation-delay:.1s">
     <div class="works-header">
       <h2 class="card-label" id="lbl-works" style="margin-bottom:0"><span class="label-dot" aria-hidden="true"></span>Selected works</h2>
-      <span class="works-meta"><span class="works-count">14 projects</span><span class="works-scroll-hint" hidden aria-hidden="true"><span>more</span><svg viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5"/></svg></span></span>
+      <span class="works-meta"><span class="works-count">15 projects</span><span class="works-scroll-hint" hidden aria-hidden="true"><span>more</span><svg viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5"/></svg></span></span>
     </div>
     <div class="works-list scroll-fade">
 
@@ -494,6 +496,14 @@
         <span class="work-name">Solys Cloud</span>
         <span class="work-desc">Hotel property management SaaS</span>
         <span class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">tRPC</span><span class="work-tag">Postgres</span></span>
+        <span class="work-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="work-row" href="https://ariyal.mhd-shiwan.workers.dev" target="_blank" rel="noopener">
+        <span class="work-status concept" aria-hidden="true"></span><span class="sr-only">Concept.</span>
+        <span class="work-name">Ariyal</span>
+        <span class="work-desc">Proposed site for a dive liveaboard</span>
+        <span class="work-tags"><span class="work-tag concept">Concept</span><span class="work-tag">HTML/CSS</span></span>
         <span class="work-arrow" aria-hidden="true">→</span>
       </a>
 
